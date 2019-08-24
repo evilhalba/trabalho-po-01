@@ -7,21 +7,23 @@ public interface IClientes {
      * Adiciona um cliente na relação de clientes.
      * @param c Cliente a ser inserido.
      */
-    public void add(Cliente c);
-    
+    public Cliente AdcionarCliente() {
+    	
     /**
      * Captura o cliente com o CPF informado por parâmetro.
      * @param CPF CPF do cliente a ser capturado.
      * @return Cliente com o CPF informado ou null caso o CPF não for encontrado.
      */
-    public Cliente get(String CPF);
-    
+    }
+    public Cliente get(String CPF) {
+    	
     /**
      * Captura uma String com as informaçoes do cliente com CPF informado por parâmetro.
      * @param CPF CPF, do cliente a ser capturado.
      * @return String com as informaçoes do cliente com o CPF informado por parâmetro 
      * ou null caso o CPF não for encontrado.
      */
+    }
     public String getInfo(String CPF);
     
     /**
