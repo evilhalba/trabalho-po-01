@@ -18,7 +18,7 @@ public interface IClientes {
     
     /**
      * Captura uma String com as informaçoes do cliente com CPF informado por parâmetro.
-     * @param CPF CPF do cliente a ser capturado.
+     * @param CPF CPF, do cliente a ser capturado.
      * @return String com as informaçoes do cliente com o CPF informado por parâmetro 
      * ou null caso o CPF não for encontrado.
      */
