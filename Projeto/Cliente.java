@@ -1,11 +1,22 @@
 public class Cliente{
 	
+	private int id;
 	private String nome;
 	private String CPF;
 	private String CNH;
 	private String end;
 	private String tel;
 	
+	
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return this.nome;
 	}

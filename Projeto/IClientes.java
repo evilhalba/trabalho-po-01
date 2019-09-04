@@ -1,13 +1,41 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Interface que permite a manipulação de um conjunto de clientes.
  * @author Aline
  */
-public interface IClientes {
+public class DAOClientes {
     /**
      * Adiciona um cliente na relação de clientes.
      * @param c Cliente a ser inserido.
      */
-    public Cliente AdcionarCliente() {
+	// foi trocado de interface para class e trocado o nome de iclientes para daoclientes
+    public void AdcionarCliente(Cliente c) { 
+    	
+    	try {
+    		Connection con = Conexao.getConexao();
+    		
+    		String sql = "INSERT INTO clientes(nome_clientes,cpf_clientes,cnh_clientes,tel_clientes,end_clientes) VALUES(?,?,?,?,?);";
+    		
+    		PreparedStatement pstm = con.prepareStatement(sql);
+    		
+    		pstm.setString(1, c.getNome());
+    		pstm.setString(2, c.getCPF());
+    		pstm.setString(3, c.getCNH());
+    		pstm.setString(4, c.getTel());
+    		pstm.setString(5, c.getEnd());
+    		
+    		pstm.execute();
+    		
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    	}
+    	
+    	
+    	
     	
     /**
      * Captura o cliente com o CPF informado por parâmetro.
@@ -15,9 +43,39 @@ public interface IClientes {
      * @return Cliente com o CPF informado ou null caso o CPF não for encontrado.
      */
     }
-    public Cliente get(String CPF) {
+    public Cliente buscarclientepcpf(String CPF) {
     	
-    /**
+    Cliente c = new Cliente();
+    	Connection con = Conexao.getConexao();
+    	
+    	String sql = "SELECT * FROM clientes WHERE cpf_clientes = ?;";
+    	
+    	try {
+    		
+    		PreparedStatement pstm = con.prepareStatement(sql);
+    		
+    		pstm.setString(1, CPF);
+    		
+    		ResultSet rs = pstm.executeQuery();
+    		
+    		if(rs.next()) {
+    			c.setId(rs.getInt("idClientes"));
+    			c.setNome(rs.getString("nome_clientes"));
+    			c.setCPF(rs.getString("cpf_clientes"));
+    			c.setTel(rs.getString("tel_clientes"));
+    			c.setCNH(rs.getString("cnh_clientes"));
+    			c.setEnd(rs.getString("end_clientes"));
+    			
+    			
+    		}
+    	return c;
+    		
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    	}
+    	return null;
+    	
+    	/**
      * Captura uma String com as informaçoes do cliente com CPF informado por parâmetro.
      * @param CPF CPF, do cliente a ser capturado.
      * @return String com as informaçoes do cliente com o CPF informado por parâmetro 
