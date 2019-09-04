@@ -2,6 +2,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Interface que permite a manipulação de um conjunto de clientes.
@@ -82,9 +84,43 @@ public class DAOClientes {
      * ou null caso o CPF não for encontrado.
      */
     }
-    public String getInfo(String CPF);
+    public List<Cliente> listarClientes(){
+    	
+    	Connection con = Conexao.getConexao();
+    	
+    	String sql = "SELECT * FROM clientes;";
+    	List<Cliente> cl = new ArrayList<Cliente>();
+    	
+    	try {
+    		PreparedStatement pstm = con.prepareStatement(sql);
+    		
+    		ResultSet rs = pstm.executeQuery();
+    		
+    		while(rs.next()) {
+    			Cliente c = new Cliente();
+    			c.setId(rs.getInt("idClientes"));
+    			c.setNome(rs.getString("nome_clientes"));
+    			c.setCPF(rs.getString("cpf_clientes"));
+    			c.setCNH(rs.getString("cnh_clientes"));
+    			c.setTel(rs.getString("tel_clientes"));
+    			c.setEnd(rs.getString("end_clientes"));
+    			
+    			cl.add(c);
+    			
+    		}
+    		
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    	}
+    	
+    	
+    	
     
+    	return cl;
+    }
     /**
+     * FOI TROCADO DE GETINFO PARA LISTAR CLIENTES
+     * E TROCADO PARA LIST
      * Captura uma String com as informaçoes de todos os clientes.
      * @return String com as informaçoes de todos os clientes
      * ou null caso não exista nenhum cliente.
