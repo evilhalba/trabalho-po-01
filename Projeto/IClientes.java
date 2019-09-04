@@ -13,29 +13,36 @@ public class DAOClientes {
     /**
      * Adiciona um cliente na relação de clientes.
      * @param c Cliente a ser inserido.
+     * foi tambem inserido um teste de pesquisa para caso o cpf ja exista
+     * sendo assim foi desconsiderado o uso do atributo existecpf
      */
 	// foi trocado de interface para class e trocado o nome de iclientes para daoclientes
     public void AdcionarCliente(Cliente c) { 
     	
-    	try {
-    		Connection con = Conexao.getConexao();
+    	if() {
     		
-    		String sql = "INSERT INTO clientes(nome_clientes,cpf_clientes,cnh_clientes,tel_clientes,end_clientes) VALUES(?,?,?,?,?);";
-    		
-    		PreparedStatement pstm = con.prepareStatement(sql);
-    		
-    		pstm.setString(1, c.getNome());
-    		pstm.setString(2, c.getCPF());
-    		pstm.setString(3, c.getCNH());
-    		pstm.setString(4, c.getTel());
-    		pstm.setString(5, c.getEnd());
-    		
-    		pstm.execute();
-    		
-    	}catch(SQLException e) {
-    		e.printStackTrace();
-    	}
+    	}else {
     	
+    	
+    		try {
+    			Connection con = Conexao.getConexao();
+    		
+    			String sql = "INSERT INTO clientes(nome_clientes,cpf_clientes,cnh_clientes,tel_clientes,end_clientes) VALUES(?,?,?,?,?);";
+    		
+    			PreparedStatement pstm = con.prepareStatement(sql);
+    		
+    			pstm.setString(1, c.getNome());
+    			pstm.setString(2, c.getCPF());
+    			pstm.setString(3, c.getCNH());
+    			pstm.setString(4, c.getTel());
+    			pstm.setString(5, c.getEnd());
+    		
+    			pstm.execute();
+    		
+    		}catch(SQLException e) {
+    			e.printStackTrace();
+    		}
+    	}
     	
     	
     	
@@ -84,7 +91,7 @@ public class DAOClientes {
      * ou null caso o CPF não for encontrado.
      */
     }
-    public List<Cliente> listarClientes(){
+    public List<Cliente> listarTudoClientes(){
     	
     	Connection con = Conexao.getConexao();
     	
@@ -149,13 +156,36 @@ public class DAOClientes {
      * @return True se o cliente com o CPF informado por parâmetro for removido ou
      * false caso não exista nenhum cliente com o CPF informado. 
      */
-    public boolean remove(String CPF);
+    public void remove(int id) {
+    	
+    	
+    	try {
+    		Connection con = Conexao.getConexao();
+    		String sql = "DELETE * FROM locacoes WHERE cliente_locacoes = ?";
+    		
+    		PreparedStatement pstm = con.prepareStatement(sql);
+    		
+    		pstm.setInt(1,id);
+    		
+    		pstm.execute();
+    		
+    		String sql2 = "DELETE * FROM clientes WHERE idClientes = ?;";
+    		
+    		PreparedStatement pstm2 = con.prepareStatement(sql2);
+    		
+    		pstm2.setInt(1, id);
+    		
+    		pstm2.execute();
+    		
+    	}catch(SQLException e){
+    		e.printStackTrace();
+    	}
+    	
+    }
     
-    /**
-     * Verifica se existe um cliente com o CPF informado por parâmetro.
-     * @param CPF CPF do cliente a ser verificado.
-     * @return True se um cliente com o CPF informado for encontrado ou 
-     * false caso não exista nenhum cliente com o CPF informado.
-     */
-    public boolean existe(String CPF);
+    
+    
+    
+    
+   
 }
