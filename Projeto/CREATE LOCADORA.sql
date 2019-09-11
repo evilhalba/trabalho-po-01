@@ -15,7 +15,8 @@ CREATE TABLE veiculos(
 idVeiculos INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 placa_veiculos VARCHAR(255),
 ano_veiculos VARCHAR(255),
-vdiaria_veiculos VARCHAR(255)
+vdiaria_veiculos VARCHAR(255),
+tipo_veiculos varchar(255)
 );
 
 CREATE TABLE carros(

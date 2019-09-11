@@ -148,13 +148,17 @@ public class DAOClientes {
      * @return True se o cliente com o CPF informado por parâmetro for modificado ou
      * false caso não exista nenhum cliente com o CPF informado.
      */
-    public boolean set(String CPF, Cliente c);
+    public Cliente editar(int id) {
+    	
+    	
+    }
     
     /**
      * Remove o cliente com o CPF igual ao informado por parâmetro.
      * @param CPF CPF do cliente a ser capturado.
      * @return True se o cliente com o CPF informado por parâmetro for removido ou
      * false caso não exista nenhum cliente com o CPF informado. 
+     * foi trocado o parametro de filtro para remoção para o id
      */
     public void remove(int id) {
     	
