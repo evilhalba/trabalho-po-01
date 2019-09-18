@@ -54,7 +54,7 @@ Para poder fazer a instalação do projeto web é necessario possuir os seguinte
 
 # Acesso para teste
 
-Ficara disponivel para consulta uma maquina da digitalocean com a ultima compilação disponivel do programa até a data do ultimo commit, onde podera ser acessado a partir deste endereço: 142.93.148.174
+Ficara disponivel para consulta uma maquina da digitalocean com a ultima compilação disponivel do programa até a data do ultimo commit, onde podera ser acessado a partir deste endereço: http://159.89.124.5:8080/PO01/ListarClientesServlet
 
 
 Dados da vps:
